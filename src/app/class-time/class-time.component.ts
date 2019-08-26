@@ -22,7 +22,6 @@ export class ClassTimeComponent implements OnInit {
     //     };
     //   });
     // });
-    console.log('called class time');
   }
 
 }

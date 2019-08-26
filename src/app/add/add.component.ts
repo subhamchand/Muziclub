@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BookslotService } from '../bookslot.service';
 import * as  moment from 'moment';
 
+const regExp = /^[1-9]{1}[0-9]{9}$/;
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -9,19 +11,19 @@ import * as  moment from 'moment';
 })
 export class AddComponent implements OnInit {
   startArraytimes = [];
-  endArraytimes =[];
-  isValidTime= false;
-  isSelectedDate= false;
+  endArraytimes = [];
+  isValidTime = false;
+  isSelectedDate = false;
 
   user = {
     name: '',
-    contact: '',
+    contact: null,
     bookingdate: null,
     starttime: '',
     endtime: ''
-  } ;
+  };
 
-  constructor(private bookSlotService: BookslotService ) { 
+  constructor(private bookSlotService: BookslotService) {
   }
 
   ngOnInit() {
@@ -30,45 +32,38 @@ export class AddComponent implements OnInit {
   }
   onSelectStartTime(event) {
     this.user.starttime = moment(this.user.bookingdate).format('l') + ' ' + event.value;
-    console.log(this.user.starttime);
     this.formValidate();
 
   }
 
   onSelectEndTime(event) {
     this.user.endtime = moment(this.user.bookingdate).format('l') + ' ' + event.value;
-    console.log(this.user.endtime);
     this.formValidate();
 
 
   }
 
   onDateSelect(event) {
-    this.user.bookingdate = event.value ;
-    console.log(this.user.bookingdate);
+    this.user.bookingdate = event.value;
     const startD = moment(this.user.bookingdate).format('l');
-    console.log(startD);
     this.formValidate();
-    if (this.user.bookingdate !== '' ) {
+    if (this.user.bookingdate !== '') {
       this.isSelectedDate = true;
     }
   }
 
   formValidate() {
-    // if ( Date.parse(this.user.endtime) > Date.parse(this.user.starttime) ) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
     const date1 = new Date(this.user.endtime);
     const date2 = new Date(this.user.starttime);
-    const diff = (date1.getTime() - date2.getTime()) / 3600000 ;
+    const diff = (date1.getTime() - date2.getTime()) / 3600000;
     if (diff > 0 && diff <= 1) {
       this.isValidTime = true;
-   } else {
-     this.isValidTime = false;
-   }
-    if (this.user.name !== '' && this.user.contact !== '' && diff > 0 && diff <= 1){
+    } else {
+      this.isValidTime = false;
+    }
+
+    if (this.user.name !== '' && this.user.contact !== null
+      && regExp.test(this.user.contact) && diff > 0 && diff <= 1) {
       return false;
     } else {
       return true;
