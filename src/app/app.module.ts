@@ -43,6 +43,7 @@ export const firebaseConfig = environment.firebaseConfig;
     AngularFirestoreModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddComponent]
 })
 export class AppModule { }

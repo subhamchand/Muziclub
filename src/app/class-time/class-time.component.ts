@@ -13,7 +13,7 @@ export class ClassTimeComponent implements OnInit {
   constructor(private bookService: BookslotService) { }
 
   ngOnInit() {
-    this.bookService.onSave();
+    // this.bookService.onSave();
     // this.bookService.onSave().subscribe( res => {
     //   this.list = res.map(item => {
     //     return {
