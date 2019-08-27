@@ -148,7 +148,7 @@ export class DateService {
       const minutes: any = d.getMinutes();
       hours = hours === 0 ? 12 : hours; // if it is 0, then make it 12
       let ampm = 'am';
-      ampm = hours > 12 ? 'pm' : 'am';
+      ampm = hours > 12 ? 'PM' : 'AM';
       hours = hours > 12 ? hours - 12 : hours; // if more than 12, reduce 12 and set am/pm flag
       hours = ('0' + hours).slice(-2); // pad with 0
       const minute = ('0' + d.getMinutes()).slice(-2); // pad with 0

@@ -17,7 +17,6 @@ export class ClassTimeComponent implements OnInit {
     private dateService: DateService) { }
 
   ngOnInit() {
-    // this.bookService.onSave();
     // this.bookService.onSave().subscribe( res => {
     //   this.list = res.map(item => {
     //     return {

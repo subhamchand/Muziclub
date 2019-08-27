@@ -245,9 +245,15 @@ export class BookslotService {
     ] ;
   constructor(private angularFirestore: AngularFirestore) { }
 
-  onSave() {
-    //  this.angularFirestore.collection('teacher').add(this.teacher);
+// method to save students booking
+  onSaveStudentBooking(payload) {
+    return this.angularFirestore.collection('students').add(payload);
     // return this.angularFirestore.collection('teacher').snapshotChanges();
+  }
+
+  // method to save students booking
+  getStudentBooking() {
+    return this.angularFirestore.collection('students').snapshotChanges();
   }
 
   getStartTimesArray(day) {

@@ -1,5 +1,7 @@
+import { BookslotService } from './../bookslot.service';
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../dialog.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-practice-time',
@@ -8,15 +10,39 @@ import { DialogService } from '../dialog.service';
 })
 export class PracticeTimeComponent implements OnInit {
 
-  constructor(private dialogservice: DialogService) { }
+  studentList = [];
+
+  constructor(private dialogservice: DialogService,
+    private bookslotService: BookslotService) { }
 
   ngOnInit() {
+    this.getBookingDetials();
   }
 
   bookslot() {
-     this.dialogservice.openAddDialog().subscribe( res =>{
-       console.log(res);
-     }) ;
+    this.dialogservice.openAddDialog().subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  getBookingDetials() {
+    this.bookslotService.getStudentBooking().subscribe(res => {
+      this.studentList = res.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data()
+        };
+      });
+      console.log(this.studentList);
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  getDateFormat(sDate, eDate) {
+    const sTime = new Date(sDate);
+    const eTime = new Date(eDate);
+    return moment(sTime).format('LT') + ' to ' + moment(eTime).format('LT');
   }
 
 }

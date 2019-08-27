@@ -1,3 +1,4 @@
+import { MatDialogRef } from '@angular/material';
 import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
 import { BookslotService } from '../bookslot.service';
@@ -26,6 +27,7 @@ export class AddComponent implements OnInit {
   isSelectedDate = false;
   timeArray = [];
   endDuration;
+  bookingDay;
 
   user = {
     name: '',
@@ -37,7 +39,8 @@ export class AddComponent implements OnInit {
   };
 
   constructor(private bookSlotService: BookslotService,
-    private dateService: DateService) {
+    private dateService: DateService,
+    private dialog: MatDialogRef<AddComponent>) {
   }
 
   ngOnInit() {
@@ -45,7 +48,7 @@ export class AddComponent implements OnInit {
     this.timeArray = this.dateService.dateArray();
   }
   onSelectStartTime(event) {
-    this.user.starttime = moment(this.user.bookingdate).format('l') + ' ' + event.value;
+    this.user.starttime = moment(new Date()).format('l') + ' ' + event.value;
     console.log(moment(new Date()).format('l') + ' ' + event.value);
     this.formValidate();
 
@@ -59,7 +62,7 @@ export class AddComponent implements OnInit {
   }
 
   onDateSelect(event) {
-    this.user.bookingdate = event.value;
+    this.bookingDay = event.value;
     const startD = moment(this.user.bookingdate).format('l');
     this.formValidate();
     if (this.user.bookingdate !== '') {
@@ -78,10 +81,23 @@ export class AddComponent implements OnInit {
   bookASlot() {
     if (!this.formValidate()) {
       const dateFormat = new Date(this.user.starttime);
-      const newDate = dateFormat.setMinutes(dateFormat.getMinutes() +  this.endDuration); // new date after adding 30 or 60 min
-      this.user.endtime = new Date(newDate);
+      const newDate = dateFormat.setMinutes(dateFormat.getMinutes() + this.endDuration); // new date after adding 30 or 60 min
+      this.user.endtime = this.dateConverter(newDate);
+      this.user.bookingdate = this.dateConverter(this.bookingDay);
       console.log(this.user);
+      this.bookSlotService.onSaveStudentBooking(this.user).then(res => {
+        console.log(res);
+        this.dialog.close(res);
+      }).catch(err => {
+        console.log(err);
+      });
     }
+  }
+
+  dateConverter(date) {
+    const endDate = new Date(date);
+    const momentEDate = moment(new Date()).format('l') + ' ' + moment(date).format('LT');
+    return momentEDate;
   }
 
 }

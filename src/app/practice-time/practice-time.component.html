@@ -10,11 +10,11 @@
         <th>Contact</th>
         
       </tr>
-      <tr>
-        <td>22 aug</td>
-        <td>10-11am</td>
-        <td>Subham Chand</td>
-        <td>23456789</td>
+      <tr *ngFor="let student of studentList">
+        <td>{{student.bookingdate}}</td>
+        <td>{{getDateFormat(student.starttime, student.endtime)}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.contact}}</td>
       </tr>
       
     </table>
