@@ -6,10 +6,10 @@
         <th>Teacher's Name</th>
         
       </tr>
-      <tr>
-        <td>Sunday</td>
-        <td>10-11am</td>
-        <td>Subham Chand</td>
+      <tr *ngFor = "let teacher of modifiedArr">
+        <td>{{teacher.day}}</td>
+        <td>{{changeTimeFormat(teacher)}}</td>
+        <td>{{teacher.name}}</td>
       </tr>
       
     </table>

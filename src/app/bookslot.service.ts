@@ -246,7 +246,7 @@ export class BookslotService {
   constructor(private angularFirestore: AngularFirestore) { }
 
   onSave() {
-    this.angularFirestore.collection('teacher').add(this.teacher);
+    //  this.angularFirestore.collection('teacher').add(this.teacher);
     // return this.angularFirestore.collection('teacher').snapshotChanges();
   }
 

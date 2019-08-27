@@ -3,49 +3,53 @@
 </div>
 <div class="container">
   <section class="inner-cont">
-  <div>
-    <mat-form-field class="width100 margin-top20">
-      <input matInput placeholder="Name" [(ngModel)] = "user.name" required (input)="formValidate()">
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field class="width100 margin-top20">
-      <input matInput placeholder="Contact Number" type="number" [(ngModel)] = "user.contact" required 
-            pattern="[1-9]{1}[0-9]{9}" #contact="ngModel" (input)="formValidate()"/>
-    </mat-form-field>
-  </div>
-  <span *ngIf="contact.touched && contact.errors" class="error"> Enter a valid contact number</span>
+    <div>
+      <mat-form-field class="width100 margin-top20">
+        <input matInput placeholder="Name" [(ngModel)]="user.name" required (input)="formValidate()">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="width100 margin-top20">
+        <input matInput placeholder="Contact Number" type="number" [(ngModel)]="user.contact" required pattern="[1-9]{1}[0-9]{9}"
+          #contact="ngModel" (input)="formValidate()" />
+      </mat-form-field>
+    </div>
+    <span *ngIf="contact.touched && contact.errors" class="error"> Enter a valid contact number</span>
 
-  <div>
+    <div>
       <mat-form-field class="width100 margin-top20">
-          <input matInput [matDatepicker]="picker" placeholder="Choose the date" (dateChange)="onDateSelect($event)">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field class="width100 margin-top20">
-      <mat-label>Start Time</mat-label>
-      <mat-select (selectionChange) = "onSelectStartTime($event)" [disabled]="!isSelectedDate">
-        <mat-option *ngFor="let time of startArraytimes" [value]="time.value">
-          {{ time.title }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
+        <input matInput [matDatepicker]="picker" placeholder="Choose the date" (dateChange)="onDateSelect($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
       <mat-form-field class="width100 margin-top20">
-        <mat-label>End Time</mat-label>
-        <mat-select (selectionChange) = "onSelectEndTime($event)" [disabled]="!isSelectedDate">
+        <mat-label>Start Time</mat-label>
+        <mat-select (selectionChange)="onSelectStartTime($event)" [disabled]="!isSelectedDate">
+          <mat-option *ngFor="let time of timeArray" [value]="time">
+            {{ time }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="width100 margin-top20">
+        <mat-label>Book For</mat-label>
+        <mat-select (selectionChange)="onSelectEndTime($event)" [disabled]="!isSelectedDate">
           <mat-option *ngFor="let time of endArraytimes" [value]="time.value">
             {{ time.title }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <span *ngIf="!isValidTime && user.starttime !== '' && user.endtime !==''" class="error"> Time cannot be less than 0 and greater than 1 hour</span>
     <div>
-        <button mat-raised-button color="primary" [disabled]="formValidate()">BOOK SLOT</button>
+      <mat-form-field class="width100">
+        <textarea matInput placeholder="Leave a comment"></textarea>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" [disabled]="formValidate()">BOOK SLOT</button>
     </div>
   </section>
 </div>

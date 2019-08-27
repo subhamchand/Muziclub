@@ -1,8 +1,7 @@
+import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
 import { BookslotService } from '../bookslot.service';
 import * as  moment from 'moment';
-
-const regExp = /^[1-9]{1}[0-9]{9}$/;
 
 @Component({
   selector: 'app-add',
@@ -11,33 +10,46 @@ const regExp = /^[1-9]{1}[0-9]{9}$/;
 })
 export class AddComponent implements OnInit {
   startArraytimes = [];
-  endArraytimes = [];
+  endArraytimes = [
+    {
+    title: '30 MIN', value: '30'
+   },
+   {
+    title: '1 HOUR', value: '60'
+  }
+];
   isValidTime = false;
   isSelectedDate = false;
+  timeArray = [];
+
 
   user = {
     name: '',
-    contact: null,
+    contact: '',
     bookingdate: null,
     starttime: '',
     endtime: ''
   };
 
-  constructor(private bookSlotService: BookslotService) {
+  constructor(private bookSlotService: BookslotService,
+              private dateService: DateService) {
   }
 
   ngOnInit() {
     this.startArraytimes = this.bookSlotService.getStartTimesArray('monday')[0].times;
-    this.endArraytimes = this.bookSlotService.getEndTimesArray('monday')[0].times;
+    this.timeArray = this.dateService.dateArray();
+    console.log(this.timeArray);
   }
   onSelectStartTime(event) {
     this.user.starttime = moment(this.user.bookingdate).format('l') + ' ' + event.value;
+    console.log(this.user.starttime);
     this.formValidate();
 
   }
 
   onSelectEndTime(event) {
     this.user.endtime = moment(this.user.bookingdate).format('l') + ' ' + event.value;
+    console.log(this.user.endtime);
     this.formValidate();
 
 
@@ -45,7 +57,9 @@ export class AddComponent implements OnInit {
 
   onDateSelect(event) {
     this.user.bookingdate = event.value;
+    console.log(this.user.bookingdate);
     const startD = moment(this.user.bookingdate).format('l');
+    console.log(startD);
     this.formValidate();
     if (this.user.bookingdate !== '') {
       this.isSelectedDate = true;
@@ -53,17 +67,15 @@ export class AddComponent implements OnInit {
   }
 
   formValidate() {
-    const date1 = new Date(this.user.endtime);
-    const date2 = new Date(this.user.starttime);
-    const diff = (date1.getTime() - date2.getTime()) / 3600000;
-    if (diff > 0 && diff <= 1) {
-      this.isValidTime = true;
-    } else {
-      this.isValidTime = false;
-    }
-
-    if (this.user.name !== '' && this.user.contact !== null
-      && regExp.test(this.user.contact) && diff > 0 && diff <= 1) {
+    // const date1 = new Date(this.user.endtime);
+    // const date2 = new Date(this.user.starttime);
+    // const diff = (date1.getTime() - date2.getTime()) / 3600000;
+    // if (diff > 0 && diff <= 1) {
+    //   this.isValidTime = true;
+    // } else {
+    //   this.isValidTime = false;
+    // }
+    if (this.user.name !== '' && this.user.contact !== '') {
       return false;
     } else {
       return true;
