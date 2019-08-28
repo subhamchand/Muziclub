@@ -83,7 +83,10 @@ export class AddComponent implements OnInit {
       const dateFormat = new Date(this.user.starttime);
       const newDate = dateFormat.setMinutes(dateFormat.getMinutes() + this.endDuration); // new date after adding 30 or 60 min
       this.user.endtime = this.dateConverter(newDate);
-      this.user.bookingdate = this.dateConverter(this.bookingDay);
+      const tempDate = new Date(this.bookingDay);
+      const momentEDate = moment(tempDate).format('llll');
+    //   this.user.bookingdate = this.dateConverter(this.bookingDay);
+      this.user.bookingdate = momentEDate;
       console.log(this.user);
       this.bookSlotService.onSaveStudentBooking(this.user).then(res => {
         console.log(res);
