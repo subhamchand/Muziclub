@@ -8,32 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class BookslotService {
 
-    //   teacher = {
-    //       name: 'Subham Chand',
-    //       classes: [
-    //         {
-    //           day: 'Thursday',
-    //           starttime: new Date(),
-    //           endtime: new Date()
-    //         },
-    //         {
-    //           day: 'Friday',
-    //           starttime: new Date(),
-    //           endtime: new Date()
-    //         },
-    //         {
-    //           day: 'Saturday',
-    //           starttime: new Date(),
-    //           endtime: new Date()
-    //         },
-    //         {
-    //           day: 'Sunday',
-    //           starttime: new Date(),
-    //           endtime: new Date()
-    //         }
-    //       ]
-    //     };
-
+    
     startTimesArray = [
         {
             day: 'monday',
@@ -142,7 +117,9 @@ export class BookslotService {
     getStartTimesArray(day) {
         return this.startTimesArray.filter(time => time.day === day);
     }
-
+    getAdminData() {
+        return this.angularFirestore.collection('admin').snapshotChanges();
+    }
     // getEndTimesArray(day) {
     //     return this.endTimesArray.filter(time => time.day === day);
     // }
