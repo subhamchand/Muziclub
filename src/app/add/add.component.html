@@ -18,7 +18,7 @@
 
     <div>
       <mat-form-field class="width100 margin-top15">
-        <input matInput [matDatepicker]="picker" placeholder="Choose the date" [min]="mindate" 
+        <input matInput [matDatepicker]="picker" placeholder="Choose the date" [min]="mindate"
               [max]="maxdate" (dateChange)="onDateSelect($event)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -52,7 +52,7 @@
       </mat-form-field>
     </div>
     <div>
-      <button mat-raised-button color="primary" [disabled]="formValidate()" (click)="bookASlot()">BOOK SLOT</button>
+      <button mat-raised-button color="primary" [disabled]="formValidate()" (click)="bookASlot()" matTooltip="Book your slot">BOOK SLOT</button>
     </div>
   </section>
 </div>

@@ -16,3 +16,7 @@
 .align-center {
     text-align: center;
 }
+.example-tooltip-red {
+  background: #b71c1c;
+  font-size: 15px;
+}
