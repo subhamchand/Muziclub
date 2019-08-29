@@ -19,6 +19,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddComponent } from './add/add.component';
+import { DeleteComponent } from './delete/delete.component';
 
 
 export const firebaseConfig = environment.firebaseConfig;
@@ -31,7 +32,8 @@ export const firebaseConfig = environment.firebaseConfig;
     HeaderComponent,
     ClassTimeComponent,
     PracticeTimeComponent,
-    AddComponent
+    AddComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,6 @@ export const firebaseConfig = environment.firebaseConfig;
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddComponent]
+  entryComponents: [AddComponent, DeleteComponent]
 })
 export class AppModule { }

@@ -48,8 +48,10 @@ export class PracticeTimeComponent implements OnInit {
         const eTime = new Date(eDate);
         return moment(sTime).format('LT') + ' to ' + moment(eTime).format('LT');
     }
-    deleteData() {
-        this.firestore.doc('students').delete();
+    openDeletePopup() {
+        this.dialogservice.openDeleteDialog().subscribe();
+        
     }
-    
+
+
 }

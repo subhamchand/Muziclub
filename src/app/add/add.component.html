@@ -10,7 +10,8 @@
     </div>
     <div>
       <mat-form-field class="width100 margin-top15">
-        <input matInput placeholder="Contact Number" type="number" [(ngModel)]="user.contact" required pattern="[1-9]{1}[0-9]{9}"
+        <input matInput placeholder="Contact Number" type="number" [(ngModel)]="user.contact"
+        required pattern="[1-9]{1}[0-9]{9}"
           #contact="ngModel" (input)="formValidate()" />
       </mat-form-field>
     </div>
@@ -52,7 +53,8 @@
       </mat-form-field>
     </div>
     <div>
-      <button mat-raised-button color="primary" [disabled]="formValidate()" (click)="bookASlot()" (click)="showToaster()">BOOK SLOT</button>
+      <button mat-raised-button color="primary" [disabled]="formValidate()"
+      (click)="bookASlot()">BOOK SLOT</button>
     </div>
   </section>
 </div>

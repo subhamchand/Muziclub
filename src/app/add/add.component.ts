@@ -3,7 +3,6 @@ import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
 import { BookslotService } from '../bookslot.service';
 import * as  moment from 'moment';
-import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -43,8 +42,7 @@ export class AddComponent implements OnInit {
 
   constructor(private bookSlotService: BookslotService,
     private dateService: DateService,
-    private dialog: MatDialogRef<AddComponent>,
-    private toastr: ToastrService
+    private dialog: MatDialogRef<AddComponent>
     ) {
   }
 
@@ -107,8 +105,5 @@ export class AddComponent implements OnInit {
     const momentEDate = moment(new Date()).format('l') + ' ' + moment(date).format('LT');
     return momentEDate;
   }
-  showToaster() {
-        this.toastr.success("Hello, I'm the toastr message.")
-    }
 
 }
