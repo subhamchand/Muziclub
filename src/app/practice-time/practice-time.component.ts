@@ -2,47 +2,54 @@ import { BookslotService } from './../bookslot.service';
 import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../dialog.service';
 import * as moment from 'moment';
+import { AngularFirestore } from '@angular/fire/firestore';
+
 
 @Component({
-  selector: 'app-practice-time',
-  templateUrl: './practice-time.component.html',
-  styleUrls: ['./practice-time.component.css']
+    selector: 'app-practice-time',
+    templateUrl: './practice-time.component.html',
+    styleUrls: ['./practice-time.component.css']
 })
 export class PracticeTimeComponent implements OnInit {
 
-  studentList = [];
+    studentList = [];
 
-  constructor(private dialogservice: DialogService,
-    private bookslotService: BookslotService) { }
+    constructor(private dialogservice: DialogService,
+        private bookslotService: BookslotService,
+        private firestore: AngularFirestore
+    ) { }
 
-  ngOnInit() {
-    this.getBookingDetials();
-  }
+    ngOnInit() {
+        this.getBookingDetials();
+    }
 
-  bookslot() {
-    this.dialogservice.openAddDialog().subscribe(res => {
-      console.log(res);
-    });
-  }
+    bookslot() {
+        this.dialogservice.openAddDialog().subscribe(res => {
+            console.log(res);
+        });
+    }
 
-  getBookingDetials() {
-    this.bookslotService.getStudentBooking().subscribe(res => {
-      this.studentList = res.map(item => {
-        return {
-          id: item.payload.doc.id,
-          ...item.payload.doc.data()
-        };
-      });
-      console.log(this.studentList);
-    }, error => {
-      console.log(error);
-    });
-  }
+    getBookingDetials() {
+        this.bookslotService.getStudentBooking().subscribe(res => {
+            this.studentList = res.map(item => {
+                return {
+                    id: item.payload.doc.id,
+                    ...item.payload.doc.data()
+                };
+            });
+            console.log(this.studentList);
+        }, error => {
+            console.log(error);
+        });
+    }
 
-  getDateFormat(sDate, eDate) {
-    const sTime = new Date(sDate);
-    const eTime = new Date(eDate);
-    return moment(sTime).format('LT') + ' to ' + moment(eTime).format('LT');
-  }
-
+    getDateFormat(sDate, eDate) {
+        const sTime = new Date(sDate);
+        const eTime = new Date(eDate);
+        return moment(sTime).format('LT') + ' to ' + moment(eTime).format('LT');
+    }
+    deleteData() {
+        this.firestore.doc('students').delete();
+    }
+    
 }

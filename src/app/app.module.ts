@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { routes } from './routing.modules';
+import { ToastrModule } from 'ngx-toastr';
+
 import { MyOwnCustomMaterialModule } from './material.modules';
 import { DetailsComponent } from './details/details.component';
 import { HeaderComponent } from './header/header.component';
@@ -40,7 +42,8 @@ export const firebaseConfig = environment.firebaseConfig;
     FlexLayoutModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

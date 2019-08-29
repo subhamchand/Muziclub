@@ -52,7 +52,7 @@
       </mat-form-field>
     </div>
     <div>
-      <button mat-raised-button color="primary" [disabled]="formValidate()" (click)="bookASlot()" matTooltip="Book your slot">BOOK SLOT</button>
+      <button mat-raised-button color="primary" [disabled]="formValidate()" (click)="bookASlot()" (click)="showToaster()">BOOK SLOT</button>
     </div>
   </section>
 </div>
