@@ -1,5 +1,8 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="loader" *ngIf="isSpin">
+    <mat-spinner></mat-spinner>
+</div>
+<div class="head">
   <h1>
     Welcome to {{ title }}!
   </h1>
