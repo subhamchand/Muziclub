@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { BookslotService } from '../bookslot.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
     selector: 'app-delete',
@@ -11,7 +12,10 @@ export class DeleteComponent implements OnInit {
     password = "";
     deleteBookings = [];
     adminData;
-    constructor(private firestore: AngularFirestore, private bookslotService: BookslotService) { }
+    constructor(private firestore: AngularFirestore,
+                private bookslotService: BookslotService,
+                private dialog: MatDialogRef<DeleteComponent>
+                ) { }
     ngOnInit() {
         this.getBookingDetails();
         this.getAdminDataFromService();
@@ -50,6 +54,7 @@ export class DeleteComponent implements OnInit {
                     this.firestore.doc('students/' + booking.id).delete();
                 }
             }
+            this.dialog.close();
             console.log('deleted bhai')
         }else{
             console.log('wrong password bhai')

@@ -15,7 +15,7 @@ const regExp = /^[1-9]{1}[0-9]{9}$/;
 })
 export class AddComponent implements OnInit {
   mindate = new Date();
-  maxdate = moment(new Date()).add(1, 'days').format();
+  maxdate = moment(new Date()).add(10, 'days').format();
   startArraytimes = [];
   endArraytimes = [
     {
@@ -50,26 +50,24 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.startArraytimes = this.bookSlotService.getStartTimesArray('monday')[0].times;
     this.getDailyTimingsFromFB();
-
   }
   onSelectStartTime(event) {
-    this.user.starttime = moment(new Date()).format('l') + ' ' + event.value;
-    console.log(this.user.starttime);
+    this.user.starttime = moment(this.bookingDay).format('l') + ' ' + event.value;
+    console.log("on select start time",this.user.starttime);
     this.formValidate();
-
   }
 
   onSelectEndTime(event) {
     this.endDuration = event.value;
+
     this.formValidate();
   }
 
   onDateSelect(event) {
     this.bookingDay = event.value;
     this.selectedDay = this.days[this.bookingDay.getDay()];
-    console.log("dayy ",this.selectedDay)
+    console.log("date and dayy ",this.bookingDay,this.selectedDay)
     this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay);
     // const startD = moment(this.user.bookingdate).format('l');
     this.formValidate();
@@ -89,8 +87,14 @@ export class AddComponent implements OnInit {
   bookASlot() {
     if (!this.formValidate()) {
       const dateFormat = new Date(this.user.starttime);
-      const newDate = dateFormat.setMinutes(dateFormat.getMinutes() + this.endDuration); // new date after adding 30 or 60 min
-      console.log("endtime : ",new Date(newDate).toString());
+      console.log("date format",dateFormat);
+    //   const dateFormat = new Date(dateFormat1);
+      console.log("dateFormat.getMinutes():", dateFormat.getMinutes());
+      const newDate = moment(dateFormat).add(this.endDuration,'minutes');
+    //   const mins = dateFormat.getMinutes() + this.endDuration;
+    //   const newDate = dateFormat.setMinutes(mins); // new date after adding 30 or 60 min
+    //   console.log("newDate::::::::",newDate)
+    //   console.log("endtime : ",new Date(newDate).toString());
       this.user.endtime = this.dateConverter(newDate);
 
       const tempDate = new Date(this.bookingDay);
@@ -109,7 +113,8 @@ export class AddComponent implements OnInit {
 
   dateConverter(date) {
     const endDate = new Date(date);
-    const momentEDate = moment(new Date()).format('l') + ' ' + moment(date).format('LT');
+    const momentEDate = moment(this.bookingDay).format('l') + ' ' + moment(endDate).format('LT');
+    console.log("momentEDate:",momentEDate)
     return momentEDate;
   }
 

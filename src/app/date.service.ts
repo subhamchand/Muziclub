@@ -7,101 +7,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class DateService {
     constructor(private angularFirestore: AngularFirestore) { }
-    // teachers schedule
-    teacherScheduledArray = [
-        {
-            'name': 'Subham Chand',
-            'classes': [
-                {
-                    'day': 'Thursday',
-                    startTime: {
-                        hr: 19,
-                        min: 30,
-                    },
-                    endTime: {
-                        hr: 21,
-                        min: 0,
-                    }
-                },
-                {
-                    'day': 'Friday',
-                    startTime: {
-                        hr: 19,
-                        min: 30,
-                    },
-                    endTime: {
-                        hr: 21,
-                        min: 0,
-                    }
-                },
-                {
-                    'day': 'Saturday',
-                    startTime: {
-                        hr: 15,
-                        min: 0,
-                    },
-                    endTime: {
-                        hr: 18,
-                        min: 0,
-                    }
-                },
-                {
-                    'day': 'sunday',
-                    startTime: {
-                        hr: 9,
-                        min: 0,
-                    },
-                    endTime: {
-                        hr: 14,
-                        min: 0,
-                    },
-                }
-            ]
-        },
-        {
-            'name': 'Pankaj',
-            'classes': [
-                {
-                    'day': 'tuesday',
-                    startTime: {
-                        hr: 19,
-                        min: 30,
-                    },
-                    endTime: {
-                        hr: 22,
-                        min: 0,
-                    },
-                }
-            ]
-        },
-        {
-            'name': 'Aakarsh Singh',
-            'classes': [
-                {
-                    'day': 'Wednesday',
-                    startTime: {
-                        hr: 19,
-                        min: 30,
-                    },
-                    endTime: {
-                        hr: 21,
-                        min: 30,
-                    }
-                },
-                {
-                    'day': 'Thursday',
-                    startTime: {
-                        hr: 9,
-                        min: 30,
-                    },
-                    endTime: {
-                        hr: 10,
-                        min: 30,
-                    },
-                }
-            ]
-        }
-    ];
 
     // calculate the time array for given start time and end time
     calculateTimeArray(startTime, endTime) {
@@ -176,9 +81,9 @@ export class DateService {
     //     return y;
     //   }
 
-    getTeacherDetailsArray() {
-        return this.teacherScheduledArray;
-    }
+    // getTeacherDetailsArray() {
+    //     return this.teacherScheduledArray;
+    // }
 
     saveDateToFirebase() {
         //   for(let i = 0; i < this.dailytimes.length; i++){
