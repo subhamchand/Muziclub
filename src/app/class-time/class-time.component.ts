@@ -26,7 +26,8 @@ export class ClassTimeComponent implements OnInit {
     //   });
     // });
     // this.dateService.saveDateToFirebase();
-   this.getTeachersArrayFromFB();
+    this.dateService.saveDateToFirebase();
+    this.getTeachersArrayFromFB();
   }
 
   // create an array for displaying data
@@ -45,11 +46,6 @@ export class ClassTimeComponent implements OnInit {
   changeTimeFormat(teacher) {
     let sTime;
     let eTime;
-
-    // let x;
-    // teacher.startTime.hr > 12 ? teacher.startTime.hr = teacher.startTime.hr - 12 : '';
-    // teacher.startTime.hr > 12 ? : x = 'pm': x = 'am';
-
     if (teacher.startTime.hr > 12) {
       sTime = (teacher.startTime.hr - 12) + ':' + teacher.startTime.min;
       eTime = (teacher.endTime.hr - 12) + ':' + teacher.endTime.min + ' pm';

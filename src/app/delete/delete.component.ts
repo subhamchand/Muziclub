@@ -45,7 +45,10 @@ export class DeleteComponent implements OnInit {
         if (this.password === this.adminData[0].password) {
             const deleteBookings = this.deleteBookings;
             for (var booking of deleteBookings) {
-                this.firestore.doc('students/' + booking.id).delete();
+                // console.log("bookings done: ",new Date(booking.bookingdate).toString());
+                if(booking){
+                    this.firestore.doc('students/' + booking.id).delete();
+                }
             }
             console.log('deleted bhai')
         }else{

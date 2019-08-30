@@ -26,16 +26,6 @@ export class DateService {
     eendTime: {
       hr: 22,
       min: 0,
-    },
-    teachersTiming: {
-      startTime: {
-        hr: 15,
-        min: 0,
-      },
-      endTime: {
-        hr: 18,
-        min: 0,
-      },
     }
   };
 
@@ -170,9 +160,6 @@ export class DateService {
     const arr = finalArr.filter(t => {
       const temp = t.split(':');
       temp[1].split(' ')[1] === 'pm' ? temp[0] = temp[0] + 12 : '';
-      // if (temp[0] > d.getHours()) {
-      //   return t;
-      // }
       return t;
     });
     return arr;
@@ -209,10 +196,15 @@ export class DateService {
   }
 
   saveDateToFirebase() {
-    // this.angularFirestore.collection('teachers').add(this.teacherScheduledArray[2]);
+    //   for(let i = 0; i < this.dailytimes.length; i++){
+    //     this.angularFirestore.collection('dailytimings').add(this.dailytimes[i]);
+    //   }
   }
   getTeachersFromFirebase() {
     return this.angularFirestore.collection('teachers').snapshotChanges();
   }
 
+  getDailyTimings(){
+      return this.angularFirestore.collection('dailytimings').snapshotChanges();
+  }
 }
