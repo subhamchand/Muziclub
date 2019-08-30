@@ -8,7 +8,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class BookslotService {
 
-    
+
     startTimesArray = [
         {
             day: 'monday',
@@ -114,9 +114,9 @@ export class BookslotService {
         return this.angularFirestore.collection('students').snapshotChanges();
     }
 
-    getStartTimesArray(day) {
-        return this.startTimesArray.filter(time => time.day === day);
-    }
+    // getStartTimesArray(day) {
+    //     return this.startTimesArray.filter(time => time.day === day);
+    // }
     getAdminData() {
         return this.angularFirestore.collection('admin').snapshotChanges();
     }

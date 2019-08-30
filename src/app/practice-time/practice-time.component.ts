@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../dialog.service';
 import * as moment from 'moment';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { DateService } from '../date.service';
 
 
 @Component({
@@ -13,14 +14,17 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class PracticeTimeComponent implements OnInit {
 
     studentList = [];
+    
 
     constructor(private dialogservice: DialogService,
         private bookslotService: BookslotService,
-        private firestore: AngularFirestore
+        private firestore: AngularFirestore,
+        private dateService: DateService
     ) { }
 
     ngOnInit() {
         this.getBookingDetials();
+        
     }
 
     bookslot() {
@@ -50,8 +54,10 @@ export class PracticeTimeComponent implements OnInit {
     }
     openDeletePopup() {
         this.dialogservice.openDeleteDialog().subscribe();
-        
+
     }
+
+   
 
 
 }

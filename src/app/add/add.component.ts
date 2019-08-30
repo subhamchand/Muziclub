@@ -28,6 +28,7 @@ export class AddComponent implements OnInit {
   isValidTime = false;
   isSelectedDate = false;
   timeArray = [];
+  dailyTimingArray = [];
   endDuration;
   bookingDay;
 
@@ -47,8 +48,9 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.startArraytimes = this.bookSlotService.getStartTimesArray('monday')[0].times;
-    this.timeArray = this.dateService.dateArray();
+    // this.startArraytimes = this.bookSlotService.getStartTimesArray('monday')[0].times;
+    this.getDailyTimingsFromFB();
+    
   }
   onSelectStartTime(event) {
     this.user.starttime = moment(new Date()).format('l') + ' ' + event.value;
@@ -105,5 +107,20 @@ export class AddComponent implements OnInit {
     const momentEDate = moment(new Date()).format('l') + ' ' + moment(date).format('LT');
     return momentEDate;
   }
+
+   getDailyTimingsFromFB() {
+        this.dateService.getDailyTimings().subscribe(res => {
+            this.dailyTimingArray = res.map(item => {
+                return {
+                    id: item.payload.doc.id,
+                    ...item.payload.doc.data()
+                };
+            });
+            console.log("timing array:  ",this.dailyTimingArray);
+            this.timeArray = this.dateService.dateArray(this.dailyTimingArray);
+            // this.dateService.timings = this.dailyTimingArray;
+        });
+
+    }
 
 }

@@ -9,25 +9,6 @@ export class DateService {
 
   constructor(private angularFirestore: AngularFirestore) { }
 
-  timings = {
-    day: 'thursday',
-    mstartTime: {
-      hr: 9,
-      min: 0,
-    },
-    mendTime: {
-      hr: 12,
-      min: 0,
-    },
-    estartTime: {
-      hr: 15,
-      min: 0,
-    },
-    eendTime: {
-      hr: 22,
-      min: 0,
-    }
-  };
 
   // teachers schedule
   teacherScheduledArray = [
@@ -148,48 +129,50 @@ export class DateService {
     return timeArr;
   }
 
-  dateArray() {
+  dateArray(timings) {
     let timeArray = [];
     let etimeArray = [];
     const d = new Date();
-    timeArray = this.calculateTimeArray(this.timings.mstartTime, this.timings.mendTime);
-    etimeArray = this.calculateTimeArray(this.timings.estartTime, this.timings.eendTime);
-    const filterTimingArray = this.removedTeacherSchedule();
+    timeArray = this.calculateTimeArray(timings[0].mstartTime, timings[0].mendTime);
+    etimeArray = this.calculateTimeArray(timings[0].estartTime, timings[0].eendTime);
+    console.log("arrayssssssssssss",timeArray,etimeArray)
+    // const filterTimingArray = this.removedTeacherSchedule();
     const scheduleArray = [...timeArray, ...etimeArray];
-    const finalArr = _.difference(scheduleArray, filterTimingArray);
-    const arr = finalArr.filter(t => {
-      const temp = t.split(':');
-      temp[1].split(' ')[1] === 'pm' ? temp[0] = temp[0] + 12 : '';
-      return t;
-    });
-    return arr;
+    // const finalArr = _.difference(scheduleArray, filterTimingArray);
+    // const arr = finalArr.filter(t => {
+    //   const temp = t.split(':');
+    //   temp[1].split(' ')[1] === 'pm' ? temp[0] = temp[0] + 12 : '';
+    //   return t;
+    // });
+    // return arr;
+    return scheduleArray;
   }
 
-  removedTeacherSchedule() {
-    const list = [];
-    this.teacherScheduledArray.forEach(a => {
-      a.classes.forEach(c => {
-        if (c.day.toLowerCase() === 'thursday') {
-          list.push(c);
-        }
-      });
-    });
-    const arrayList = [];
-    const startTime = {
-      hr: 18,
-      min: 30,
-    };
-    const endTime = {
-      hr: 20,
-      min: 30,
-    };
-    for (let i = 0; i < list.length; i++) {
-      const x = this.calculateTimeArray(list[i].startTime, list[i].endTime);
-      arrayList.push(x);
-    }
-    const y = _.flatMapDeep(arrayList);
-    return y;
-  }
+//   removedTeacherSchedule() {
+//     const list = [];
+//     this.teacherScheduledArray.forEach(a => {
+//       a.classes.forEach(c => {
+//         if (c.day.toLowerCase() === 'thursday') {
+//           list.push(c);
+//         }
+//       });
+//     });
+//     const arrayList = [];
+//     const startTime = {
+//       hr: 18,
+//       min: 30,
+//     };
+//     const endTime = {
+//       hr: 20,
+//       min: 30,
+//     };
+//     for (let i = 0; i < list.length; i++) {
+//       const x = this.calculateTimeArray(list[i].startTime, list[i].endTime);
+//       arrayList.push(x);
+//     }
+//     const y = _.flatMapDeep(arrayList);
+//     return y;
+//   }
 
   getTeacherDetailsArray() {
     return this.teacherScheduledArray;
