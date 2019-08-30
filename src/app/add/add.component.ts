@@ -15,7 +15,7 @@ const regExp = /^[1-9]{1}[0-9]{9}$/;
 })
 export class AddComponent implements OnInit {
   mindate = new Date();
-  maxdate = moment(new Date()).add(10, 'days').format();
+  maxdate = moment(new Date()).add(1, 'days').format();
   startArraytimes = [];
   endArraytimes = [
     {
@@ -56,7 +56,7 @@ export class AddComponent implements OnInit {
   }
   onSelectStartTime(event) {
     this.user.starttime = moment(new Date()).format('l') + ' ' + event.value;
-    console.log(moment(new Date()).format('l') + ' ' + event.value);
+    console.log(this.user.starttime);
     this.formValidate();
 
   }
@@ -90,7 +90,9 @@ export class AddComponent implements OnInit {
     if (!this.formValidate()) {
       const dateFormat = new Date(this.user.starttime);
       const newDate = dateFormat.setMinutes(dateFormat.getMinutes() + this.endDuration); // new date after adding 30 or 60 min
+      console.log("endtime : ",new Date(newDate).toString());
       this.user.endtime = this.dateConverter(newDate);
+
       const tempDate = new Date(this.bookingDay);
       const momentEDate = moment(tempDate).format('dddd , MMM Do');
     //   this.user.bookingdate = this.dateConverter(this.bookingDay);

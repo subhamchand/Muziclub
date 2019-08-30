@@ -133,8 +133,8 @@ export class DateService {
             if (timings[i].day.toLowerCase() === selectedDay.toLowerCase()) {
                 timeArray = this.calculateTimeArray(timings[i].mstartTime, timings[i].mendTime);
                 etimeArray = this.calculateTimeArray(timings[i].estartTime, timings[i].eendTime);
-                console.log("the day is",timings[i].day);
-                console.log("arrayssssssssssss", timeArray, etimeArray)
+                // console.log("the day is",timings[i].day);
+                // console.log("arrayssssssssssss", timeArray, etimeArray)
             }
         }
         // const filterTimingArray = this.removedTeacherSchedule();
@@ -146,6 +146,7 @@ export class DateService {
         //   return t;
         // });
         // return arr;
+        // console.log("dropdown array: ",scheduleArray)
         return scheduleArray;
     }
 

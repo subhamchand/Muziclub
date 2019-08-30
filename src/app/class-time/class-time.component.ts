@@ -47,10 +47,13 @@ export class ClassTimeComponent implements OnInit {
     let sTime;
     let eTime;
     if (teacher.startTime.hr > 12) {
-      sTime = (teacher.startTime.hr - 12) + ':' + teacher.startTime.min;
+      sTime = (teacher.startTime.hr - 12) + ':' + teacher.startTime.min + ' pm';
+      eTime = (teacher.endTime.hr - 12) + ':' + teacher.endTime.min + ' pm';
+    } else if (teacher.startTime.hr < 12 && teacher.endTime.hr > 12){
+      sTime = teacher.startTime.hr + ':' + teacher.startTime.min + ' am';
       eTime = (teacher.endTime.hr - 12) + ':' + teacher.endTime.min + ' pm';
     } else {
-      sTime = teacher.startTime.hr + ':' + teacher.startTime.min;
+      sTime = teacher.startTime.hr + ':' + teacher.startTime.min + ' am';
       eTime = teacher.endTime.hr + ':' + teacher.endTime.min + ' am';
     }
     return sTime + '  to  ' + eTime;
