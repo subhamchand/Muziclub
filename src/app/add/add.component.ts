@@ -15,7 +15,7 @@ const regExp = /^[1-9]{1}[0-9]{9}$/;
 })
 export class AddComponent implements OnInit {
   mindate = new Date();
-  maxdate = moment(new Date()).add(3, 'days').format();
+  maxdate = moment(new Date()).add(10, 'days').format();
   startArraytimes = [];
   endArraytimes = [
     {
@@ -31,6 +31,7 @@ export class AddComponent implements OnInit {
   dailyTimingArray = [];
   endDuration;
   bookingDay;
+  selectedDay;
   days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   user = {
@@ -63,17 +64,14 @@ export class AddComponent implements OnInit {
   onSelectEndTime(event) {
     this.endDuration = event.value;
     this.formValidate();
-
-
   }
 
   onDateSelect(event) {
     this.bookingDay = event.value;
-
-    const selectedDay = this.days[this.bookingDay.getDay()];
-    console.log("dayy ",selectedDay)
-    // this.timeArray = this.dateService.dateArray(this.dailyTimingArray);
-    const startD = moment(this.user.bookingdate).format('l');
+    this.selectedDay = this.days[this.bookingDay.getDay()];
+    console.log("dayy ",this.selectedDay)
+    this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay);
+    // const startD = moment(this.user.bookingdate).format('l');
     this.formValidate();
     if (this.user.bookingdate !== '') {
       this.isSelectedDate = true;
