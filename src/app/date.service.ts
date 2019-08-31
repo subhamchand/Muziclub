@@ -14,13 +14,14 @@ export class DateService {
         const e = new Date();
         const x = d.setHours(startTime.hr, startTime.min, 0, 0); // reassign it to today's midnight
         const y = e.setHours(endTime.hr, endTime.min, 0, 0);
+        // console.log("x and y", new Date(x).toString(),new Date(y).toString());
         const timeArr = [];
         while (d.getHours() < e.getHours()) {
             let hours: any = d.getHours();
-            const minutes: any = d.getMinutes();
+            // const minutes: any = d.getMinutes();
             hours = hours === 0 ? 12 : hours; // if it is 0, then make it 12
             let ampm = 'am';
-            ampm = hours > 12 ? 'PM' : 'AM';
+            ampm = hours >= 12 ? 'PM' : 'AM';
             hours = hours > 12 ? hours - 12 : hours; // if more than 12, reduce 12 and set am/pm flag
             hours = ('0' + hours).slice(-2); // pad with 0
             const minute = ('0' + d.getMinutes()).slice(-2); // pad with 0
@@ -46,23 +47,24 @@ export class DateService {
             oneTeacher.classes.forEach(classes => {
                 // console.log("classes", classes)
                 if(classes.day.toLowerCase() === selectedDay.toLowerCase()){
+                    console.log("classes.startTime, classes.endTime:",classes.startTime, classes.endTime);
                     tempTiming.push(this.calculateTimeArray(classes.startTime, classes.endTime));
                     console.log("tempTiming:", tempTiming)
                     tempTiming.forEach(element =>{
                         element.forEach(el => {
                             // console.log("ele",el)
                             teacherSchedule.push(el);
-                            console.log("teacherSchedule:::::::::", _.sortedUniq(teacherSchedule));
+                            teacherSchedule = _.sortedUniq(teacherSchedule)
+                            // console.log("teacherSchedule:::::::::", teacherSchedule);
                         })
                     })
-                    // console.log("teacherSchedule:", teacherSchedule)
-                }
+                } //end of if
             });
         });
-        // const filterTimingArray = this.removedTeacherSchedule();
         const scheduleArray = [...timeArray, ...etimeArray];
 
-        // const finalArr = _.difference(scheduleArray, filterTimingArray);
+        const finalArr = _.difference(scheduleArray, teacherSchedule);
+        console.log("finalArr:", finalArr);
         // const arr = finalArr.filter(t => {
         //   const temp = t.split(':');
         //   temp[1].split(' ')[1] === 'pm' ? temp[0] = temp[0] + 12 : '';
@@ -70,7 +72,7 @@ export class DateService {
         // });
         // return arr;
         // console.log("dropdown array: ",scheduleArray)
-        return scheduleArray;
+        return finalArr;
     }
 
     //   removedTeacherSchedule() {
