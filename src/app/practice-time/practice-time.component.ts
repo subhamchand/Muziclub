@@ -15,7 +15,6 @@ export class PracticeTimeComponent implements OnInit {
 
     studentList = [];
 
-
     constructor(private dialogservice: DialogService,
         private bookslotService: BookslotService,
         private firestore: AngularFirestore,
@@ -24,9 +23,8 @@ export class PracticeTimeComponent implements OnInit {
 
     ngOnInit() {
         this.getBookingDetials();
-
     }
-
+    
     bookslot() {
         this.dialogservice.openAddDialog().subscribe(res => {
             console.log(res);
@@ -41,7 +39,6 @@ export class PracticeTimeComponent implements OnInit {
                     ...item.payload.doc.data()
                 };
             });
-            // console.log(this.studentList);
         }, error => {
             console.log(error);
         });
@@ -52,12 +49,9 @@ export class PracticeTimeComponent implements OnInit {
         const eTime = new Date(eDate);
         return moment(sTime).format('LT') + ' to ' + moment(eTime).format('LT');
     }
+
     openDeletePopup() {
         this.dialogservice.openDeleteDialog().subscribe();
-
     }
-
-
-
-
+    
 }
