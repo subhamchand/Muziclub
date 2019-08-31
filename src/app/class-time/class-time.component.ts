@@ -17,14 +17,6 @@ export class ClassTimeComponent implements OnInit {
     private dateService: DateService) { }
 
   ngOnInit() {
-    // this.bookService.onSave().subscribe( res => {
-    //   this.list = res.map(item => {
-    //     return {
-    //       id: item.payload.doc.id,
-    //       ...item.payload.doc.data()
-    //     };
-    //   });
-    // });
     // this.dateService.saveDateToFirebase();
     this.dateService.saveDateToFirebase();
     this.getTeachersArrayFromFB();
@@ -40,7 +32,7 @@ export class ClassTimeComponent implements OnInit {
         }
       }
     }
-    console.log(this.modifiedArr);
+    // console.log(this.modifiedArr);
   }
 
   changeTimeFormat(teacher) {
@@ -69,6 +61,6 @@ export class ClassTimeComponent implements OnInit {
       });
       this.createScheduleArray(this.teachersArray);
     });
-    console.log(this.teachersArray);
+    // console.log(this.teachersArray);
   }
 }

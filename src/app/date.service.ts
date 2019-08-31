@@ -30,20 +30,38 @@ export class DateService {
         return timeArr;
     }
 
-    dateArray(timings, selectedDay) {
+    dateArray(timings, selectedDay, teachersScheduledArray) {
         let timeArray = [];
         let etimeArray = [];
+        let tempTiming = [];
+        let teacherSchedule = [];
         // const d = new Date();
         for( let i = 0; i < timings.length; i++){
             if (timings[i].day.toLowerCase() === selectedDay.toLowerCase()) {
                 timeArray = this.calculateTimeArray(timings[i].mstartTime, timings[i].mendTime);
                 etimeArray = this.calculateTimeArray(timings[i].estartTime, timings[i].eendTime);
-                // console.log("the day is",timings[i].day);
-                // console.log("arrayssssssssssss", timeArray, etimeArray)
             }
         }
+        teachersScheduledArray.forEach(oneTeacher => {
+            oneTeacher.classes.forEach(classes => {
+                // console.log("classes", classes)
+                if(classes.day.toLowerCase() === selectedDay.toLowerCase()){
+                    tempTiming.push(this.calculateTimeArray(classes.startTime, classes.endTime));
+                    console.log("tempTiming:", tempTiming)
+                    tempTiming.forEach(element =>{
+                        element.forEach(el => {
+                            // console.log("ele",el)
+                            teacherSchedule.push(el);
+                            console.log("teacherSchedule:::::::::", _.sortedUniq(teacherSchedule));
+                        })
+                    })
+                    // console.log("teacherSchedule:", teacherSchedule)
+                }
+            });
+        });
         // const filterTimingArray = this.removedTeacherSchedule();
         const scheduleArray = [...timeArray, ...etimeArray];
+
         // const finalArr = _.difference(scheduleArray, filterTimingArray);
         // const arr = finalArr.filter(t => {
         //   const temp = t.split(':');

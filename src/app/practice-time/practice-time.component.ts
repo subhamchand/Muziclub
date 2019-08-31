@@ -14,7 +14,7 @@ import { DateService } from '../date.service';
 export class PracticeTimeComponent implements OnInit {
 
     studentList = [];
-    
+
 
     constructor(private dialogservice: DialogService,
         private bookslotService: BookslotService,
@@ -24,7 +24,7 @@ export class PracticeTimeComponent implements OnInit {
 
     ngOnInit() {
         this.getBookingDetials();
-        
+
     }
 
     bookslot() {
@@ -41,7 +41,7 @@ export class PracticeTimeComponent implements OnInit {
                     ...item.payload.doc.data()
                 };
             });
-            console.log(this.studentList);
+            // console.log(this.studentList);
         }, error => {
             console.log(error);
         });
@@ -57,7 +57,7 @@ export class PracticeTimeComponent implements OnInit {
 
     }
 
-   
+
 
 
 }

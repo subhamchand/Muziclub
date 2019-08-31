@@ -32,6 +32,7 @@ export class AddComponent implements OnInit {
   endDuration;
   bookingDay;
   selectedDay;
+  teacherScheduledArray = [];
   days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
   user = {
@@ -51,6 +52,7 @@ export class AddComponent implements OnInit {
 
   ngOnInit() {
     this.getDailyTimingsFromFB();
+    this.getTeachersArrayFromFB();
   }
   onSelectStartTime(event) {
     this.user.starttime = moment(this.bookingDay).format('l') + ' ' + event.value;
@@ -60,7 +62,6 @@ export class AddComponent implements OnInit {
 
   onSelectEndTime(event) {
     this.endDuration = event.value;
-
     this.formValidate();
   }
 
@@ -68,7 +69,7 @@ export class AddComponent implements OnInit {
     this.bookingDay = event.value;
     this.selectedDay = this.days[this.bookingDay.getDay()];
     console.log("date and dayy ",this.bookingDay,this.selectedDay)
-    this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay);
+    this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay, this.teacherScheduledArray);
     // const startD = moment(this.user.bookingdate).format('l');
     this.formValidate();
     if (this.user.bookingdate !== '') {
@@ -132,5 +133,18 @@ export class AddComponent implements OnInit {
         });
 
     }
+
+    getTeachersArrayFromFB() {
+    this.dateService.getTeachersFromFirebase().subscribe(res => {
+      this.teacherScheduledArray = res.map(item => {
+        return {
+          id: item.payload.doc.id,
+          ...item.payload.doc.data()
+        };
+      });
+      console.log("add component",this.teacherScheduledArray);
+    });
+
+  }
 
 }
