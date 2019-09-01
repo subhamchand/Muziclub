@@ -43,18 +43,32 @@ export class DateService {
        }
     }
 
-    dateArray(timings, selectedDay, teachersScheduledArray) {
+    dateArray(timings, selectedDay, teachersScheduledArray, studentList) {
         let timeArray = [];
         let etimeArray = [];
         let tempTiming = [];
+        let tempBookingTiming = [];
         let teacherSchedule = [];
-        // const d = new Date();
-        for( let i = 0; i < timings.length; i++){
-            if (timings[i].day.toLowerCase() === selectedDay.toLowerCase()) {
-                timeArray = this.calculateTimeArray(timings[i].mstartTime, timings[i].mendTime);
-                etimeArray = this.calculateTimeArray(timings[i].estartTime, timings[i].eendTime);
-            }
-        }
+        let bookingSchedule = [];
+
+        studentList.forEach(oneStudent => {
+            oneStudent.bookingDay
+            if(oneStudent.bookingDay.toLowerCase() === selectedDay.toLowerCase()){
+                    tempBookingTiming.push(this.calculateTimeArray(
+                        {"hr":new Date(oneStudent.starttime).getHours(),"min":new Date(oneStudent.starttime).getMinutes()},
+                        {"hr":new Date(oneStudent.endtime).getHours(),"min":new Date(oneStudent.endtime).getMinutes()}
+                        ));
+                    console.log("tempBookingTiming:", tempBookingTiming)
+                    tempBookingTiming.forEach(element =>{
+                        element.forEach(el => {
+                            // console.log("ele",el)
+                            bookingSchedule.push(el);
+                            bookingSchedule = _.sortedUniq(bookingSchedule)
+                        })
+                    })
+                } //end of if
+        });
+
         teachersScheduledArray.forEach(oneTeacher => {
             oneTeacher.classes.forEach(classes => {
                 // console.log("classes", classes)
@@ -73,45 +87,23 @@ export class DateService {
                 } //end of if
             });
         });
+
+
+        for( let i = 0; i < timings.length; i++){
+            if (timings[i].day.toLowerCase() === selectedDay.toLowerCase()) {
+                timeArray = this.calculateTimeArray(timings[i].mstartTime, timings[i].mendTime);
+                etimeArray = this.calculateTimeArray(timings[i].estartTime, timings[i].eendTime);
+            }
+        }
+
         const scheduleArray = [...timeArray, ...etimeArray];
 
-        const finalArr = _.difference(scheduleArray, teacherSchedule);
-        console.log("finalArr:", finalArr);
-        // const arr = finalArr.filter(t => {
-        //   const temp = t.split(':');
-        //   temp[1].split(' ')[1] === 'pm' ? temp[0] = temp[0] + 12 : '';
-        //   return t;
-        // });
-        // return arr;
-        // console.log("dropdown array: ",scheduleArray)
+        const tempArr = _.difference(scheduleArray, teacherSchedule);
+        const finalArr = _.difference(tempArr,bookingSchedule);
+        // console.log("finalArr:", finalArr);
+
         return finalArr;
     }
-
-    //   removedTeacherSchedule() {
-    //     const list = [];
-    //     this.teacherScheduledArray.forEach(a => {
-    //       a.classes.forEach(c => {
-    //         if (c.day.toLowerCase() === 'thursday') {
-    //           list.push(c);
-    //         }
-    //       });
-    //     });
-    //     const arrayList = [];
-    //     const startTime = {
-    //       hr: 18,
-    //       min: 30,
-    //     };
-    //     const endTime = {
-    //       hr: 20,
-    //       min: 30,
-    //     };
-    //     for (let i = 0; i < list.length; i++) {
-    //       const x = this.calculateTimeArray(list[i].startTime, list[i].endTime);
-    //       arrayList.push(x);
-    //     }
-    //     const y = _.flatMapDeep(arrayList);
-    //     return y;
-    //   }
 
     // getTeacherDetailsArray() {
     //     return this.teacherScheduledArray;

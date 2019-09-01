@@ -40,6 +40,7 @@ export class AddComponent implements OnInit {
         name: '',
         contact: '',
         bookingdate: null,
+        bookingDay: '',
         starttime: '',
         endtime: null,
         comment: ''
@@ -69,12 +70,11 @@ export class AddComponent implements OnInit {
     }
 
     onDateSelect(event) {
-        console.log(new Date(this.studentList[0].starttime));
-        console.log(this.studentList[0]);
         this.bookingDay = event.value;
         this.selectedDay = this.days[this.bookingDay.getDay()];
         console.log("date and dayy ", this.bookingDay, this.selectedDay)
-        this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay, this.teacherScheduledArray);
+        this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay,
+        this.teacherScheduledArray, this.studentList);
         // const startD = moment(this.user.bookingdate).format('l');
         this.formValidate();
         if (this.user.bookingdate !== '') {
@@ -106,6 +106,7 @@ export class AddComponent implements OnInit {
             const momentEDate = moment(tempDate).format('dddd , MMM Do');
             //   this.user.bookingdate = this.dateConverter(this.bookingDay);
             this.user.bookingdate = momentEDate;
+            this.user.bookingDay = this.selectedDay;
             console.log(this.user);
             this.bookSlotService.onSaveStudentBooking(this.user).then(res => {
                 console.log(res);
