@@ -16,7 +16,7 @@ export class DateService {
         const y = e.setHours(endTime.hr, endTime.min, 0, 0);
         // console.log("x and y", new Date(x).toString(),new Date(y).toString());
         const timeArr = [];
-        while (d.getHours() < e.getHours()) {
+        while (d.getHours() <= e.getHours()) {
             let hours: any = d.getHours();
             // const minutes: any = d.getMinutes();
             hours = hours === 0 ? 12 : hours; // if it is 0, then make it 12
@@ -28,7 +28,19 @@ export class DateService {
             timeArr.push(hours + ':' + minute + ' ' + ampm);
             d.setMinutes(d.getMinutes() + 30); // increment by 30 minutes
         }
-        return timeArr;
+        if (d.getMinutes() == 0 && e.getMinutes() == 0){
+         timeArr.splice(-2)
+         return timeArr;
+       } else if (d.getMinutes() == 0 && e.getMinutes() == 30) {
+         timeArr.splice(-1)
+         return timeArr;
+       } else if (d.getMinutes() == 30 && e.getMinutes() == 30) {
+         timeArr.splice(-1)
+         return timeArr;
+       } else if (d.getMinutes() == 30 && e.getMinutes() == 0) {
+         timeArr.splice(-2)
+         return timeArr;
+       }
     }
 
     dateArray(timings, selectedDay, teachersScheduledArray) {

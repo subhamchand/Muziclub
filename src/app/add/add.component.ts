@@ -69,6 +69,8 @@ export class AddComponent implements OnInit {
     }
 
     onDateSelect(event) {
+        console.log(new Date(this.studentList[0].starttime));
+        console.log(this.studentList[0]);
         this.bookingDay = event.value;
         this.selectedDay = this.days[this.bookingDay.getDay()];
         console.log("date and dayy ", this.bookingDay, this.selectedDay)
