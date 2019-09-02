@@ -11,7 +11,7 @@ export class OpenTimingComponent implements OnInit {
     constructor(private dateService: DateService) { }
     openTimeArray = [];
     ngOnInit() {
-        this.getOpenTiming();
+        // this.getOpenTiming();
     }
 
     getOpenTiming() {
