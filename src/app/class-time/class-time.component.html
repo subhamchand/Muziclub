@@ -4,17 +4,13 @@
         <th>Day</th>
         <th>Time</th>
         <th>Teacher's Name</th>
-        
+
       </tr>
       <tr *ngFor = "let teacher of modifiedArr">
         <td>{{teacher.day}}</td>
         <td>{{changeTimeFormat(teacher)}}</td>
         <td>{{teacher.name}}</td>
       </tr>
-      
+
     </table>
   </div>
-
-<div *ngIf="list.length > 0">
-  <div *ngFor="let l of list">{{l.id + ' ' + l.name}}</div>
-</div>

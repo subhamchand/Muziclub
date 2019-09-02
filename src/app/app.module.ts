@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule} from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
+import { OpenTimingComponent } from './open-timing/open-timing.component';
 
 
 export const firebaseConfig = environment.firebaseConfig;
@@ -33,7 +34,8 @@ export const firebaseConfig = environment.firebaseConfig;
     ClassTimeComponent,
     PracticeTimeComponent,
     AddComponent,
-    DeleteComponent
+    DeleteComponent,
+    OpenTimingComponent
   ],
   imports: [
     BrowserModule,

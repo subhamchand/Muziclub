@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassTimeComponent implements OnInit {
 
-  list = [];
   teachersArray = [];
   modifiedArr = [];
 
@@ -17,8 +16,6 @@ export class ClassTimeComponent implements OnInit {
     private dateService: DateService) { }
 
   ngOnInit() {
-    // this.dateService.saveDateToFirebase();
-    this.dateService.saveDateToFirebase();
     this.getTeachersArrayFromFB();
   }
 
@@ -35,18 +32,18 @@ export class ClassTimeComponent implements OnInit {
     // console.log(this.modifiedArr);
   }
 
-  changeTimeFormat(teacher) {
+  changeTimeFormat(object) {
     let sTime;
     let eTime;
-    if (teacher.startTime.hr > 12) {
-      sTime = (teacher.startTime.hr - 12) + ':' + teacher.startTime.min + ' pm';
-      eTime = (teacher.endTime.hr - 12) + ':' + teacher.endTime.min + ' pm';
-    } else if (teacher.startTime.hr < 12 && teacher.endTime.hr > 12){
-      sTime = teacher.startTime.hr + ':' + teacher.startTime.min + ' am';
-      eTime = (teacher.endTime.hr - 12) + ':' + teacher.endTime.min + ' pm';
+    if (object.startTime.hr > 12) {
+      sTime = (object.startTime.hr - 12) + ':' + object.startTime.min + ' pm';
+      eTime = (object.endTime.hr - 12) + ':' + object.endTime.min + ' pm';
+    } else if (object.startTime.hr < 12 && object.endTime.hr > 12){
+      sTime = object.startTime.hr + ':' + object.startTime.min + ' am';
+      eTime = (object.endTime.hr - 12) + ':' + object.endTime.min + ' pm';
     } else {
-      sTime = teacher.startTime.hr + ':' + teacher.startTime.min + ' am';
-      eTime = teacher.endTime.hr + ':' + teacher.endTime.min + ' am';
+      sTime = object.startTime.hr + ':' + object.startTime.min + ' am';
+      eTime = object.endTime.hr + ':' + object.endTime.min + ' am';
     }
     return sTime + '  to  ' + eTime;
   }

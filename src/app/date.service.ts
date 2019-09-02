@@ -7,7 +7,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class DateService {
     constructor(private angularFirestore: AngularFirestore) { }
-
     // calculate the time array for given start time and end time
     calculateTimeArray(startTime, endTime) {
         const d = new Date(); // get a date object
@@ -108,16 +107,16 @@ export class DateService {
     // getTeacherDetailsArray() {
     //     return this.teacherScheduledArray;
     // }
-
-    saveDateToFirebase() {
+    saveDataToFirebase() {
         //   for(let i = 0; i < this.dailytimes.length; i++){
-        //     this.angularFirestore.collection('dailytimings').add(this.dailytimes[i]);
+            // this.angularFirestore.collection('dailytimingsnew').add(this.dailytimes);
         //   }
     }
+
     getTeachersFromFirebase() {
         return this.angularFirestore.collection('teachers').snapshotChanges();
     }
-
+k
     getDailyTimings() {
         return this.angularFirestore.collection('dailytimings').snapshotChanges();
     }
