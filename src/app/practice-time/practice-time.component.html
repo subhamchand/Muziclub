@@ -11,15 +11,14 @@
         <th>Students's Name</th>
         <th>Contact</th>
         <th>Action</th>
-
       </tr>
       <tr *ngFor="let student of studentList" [matTooltip]="student.comment" matTooltipClass="example-tooltip-red">
         <td>{{student.bookingdate}}</td>
         <td>{{getDateFormat(student.starttime, student.endtime)}}</td>
         <td>{{student.name}}</td>
         <td>{{student.contact}}</td>
-        <td><mat-icon color="warn" (click)="onDeleteBooking()" class="pointer" >delete_forever</mat-icon>
-        <mat-icon style="margin-left: 20px" class="pointer">create</mat-icon>
+        <td><mat-icon color="warn" (click)="onDeleteBooking(student.id)" class="pointer" matTooltip="Delete Booking">delete_forever</mat-icon>
+        <mat-icon style="margin-left: 20px" class="pointer" matTooltip="Edit Booking">create</mat-icon>
         </td>
       </tr>
     </table>

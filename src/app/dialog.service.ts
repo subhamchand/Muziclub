@@ -2,6 +2,7 @@ import { AddComponent } from './add/add.component';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteComponent } from './delete/delete.component';
+import { DeleteOneComponent } from './delete-one/delete-one.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class DialogService {
   openDeleteDialog() {
     let dialogRef: MatDialogRef<DeleteComponent>;
     dialogRef = this.dialog.open(DeleteComponent);
+    return dialogRef.afterClosed();
+  }
+  openDeleteOneDialog(studentId) {
+    let dialogRef: MatDialogRef<DeleteOneComponent>;
+    dialogRef = this.dialog.open(DeleteOneComponent, { data: { sId: studentId } });
     return dialogRef.afterClosed();
   }
 }
