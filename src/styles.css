@@ -37,7 +37,7 @@
   }
 
   #customers tr:nth-child(even){background-color: #f2f2f2; opacity: 0.8}
-  #customers tr:nth-child(odd){background-color: darkseagreen; opacity: 0.8}
+  #customers tr:nth-child(odd){background-color: cadetblue; opacity: 0.8}
 
   #customers tr:hover {background-color: #ddd; }
 
@@ -45,12 +45,13 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: cadetblue;
+    background-color: rgb(6, 97, 97);
     color: white;
     text-align: center;
   }
   .table{
-      margin-top: 15px;
+      /* margin-top: 15px; */
+      padding: 20px;
   }
   .pointer {
     cursor: pointer;
