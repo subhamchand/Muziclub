@@ -24,7 +24,7 @@ export class PracticeTimeComponent implements OnInit {
     ngOnInit() {
         this.getBookingDetials();
     }
-    
+
     bookslot() {
         this.dialogservice.openAddDialog().subscribe(res => {
             console.log(res);
@@ -53,5 +53,5 @@ export class PracticeTimeComponent implements OnInit {
     openDeletePopup() {
         this.dialogservice.openDeleteDialog().subscribe();
     }
-    
+
 }

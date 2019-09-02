@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { routes } from './routing.modules';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MyOwnCustomMaterialModule } from './material.modules';
 import { DetailsComponent } from './details/details.component';
@@ -21,6 +22,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
 import { OpenTimingComponent } from './open-timing/open-timing.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 export const firebaseConfig = environment.firebaseConfig;
@@ -35,7 +37,8 @@ export const firebaseConfig = environment.firebaseConfig;
     PracticeTimeComponent,
     AddComponent,
     DeleteComponent,
-    OpenTimingComponent
+    OpenTimingComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ export const firebaseConfig = environment.firebaseConfig;
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,10 @@
+p{
+    font-size: 20px;
+}
+.big{
+    font-size: 45px;
+    font-style: unset;
+    font-family: cursive;
+    margin-left: 50px;
+    color: crimson;
+}
