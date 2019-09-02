@@ -35,15 +35,21 @@ export class ClassTimeComponent implements OnInit {
   changeTimeFormat(object) {
     let sTime;
     let eTime;
+    if(object.startTime.min == 0){
+        object.startTime.min = "00";
+    }
+    if(object.endTime.min == 0){
+        object.endTime.min = "00";
+    }
     if (object.startTime.hr > 12) {
-      sTime = (object.startTime.hr - 12) + ':' + object.startTime.min + ' pm';
-      eTime = (object.endTime.hr - 12) + ':' + object.endTime.min + ' pm';
+      sTime = (object.startTime.hr - 12) + ':' + object.startTime.min + ' PM';
+      eTime = (object.endTime.hr - 12) + ':' + object.endTime.min + ' PM';
     } else if (object.startTime.hr < 12 && object.endTime.hr > 12){
-      sTime = object.startTime.hr + ':' + object.startTime.min + ' am';
-      eTime = (object.endTime.hr - 12) + ':' + object.endTime.min + ' pm';
+      sTime = object.startTime.hr + ':' + object.startTime.min + ' AM';
+      eTime = (object.endTime.hr - 12) + ':' + object.endTime.min + ' PM';
     } else {
-      sTime = object.startTime.hr + ':' + object.startTime.min + ' am';
-      eTime = object.endTime.hr + ':' + object.endTime.min + ' am';
+      sTime = object.startTime.hr + ':' + object.startTime.min + ' AM';
+      eTime = object.endTime.hr + ':' + object.endTime.min + ' AM';
     }
     return sTime + '  to  ' + eTime;
   }
