@@ -54,8 +54,10 @@ export class PracticeTimeComponent implements OnInit {
         this.dialogservice.openDeleteDialog().subscribe();
     }
     onDeleteBooking(studentId){
-        console.log(studentId)
         this.dialogservice.openDeleteOneDialog(studentId).subscribe();
+    }
+    onEditBooking(studentObj){
+        this.dialogservice.openEditOneDialog(studentObj).subscribe();
     }
 
 }

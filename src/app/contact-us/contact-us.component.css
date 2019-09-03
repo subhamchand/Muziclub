@@ -20,8 +20,9 @@ h2{
      /* position: relative; */
      background-size:cover;
      width:100%;
-     height:66.67vh;
-     background-image:url('https://firebasestorage.googleapis.com/v0/b/muziclubapp.appspot.com/o/alessandro-vallainc-keML1ec0KYw-unsplash%20(1).jpg?alt=media&token=a836e485-2e35-4de9-8999-1c21389725bd');
+     height:76vh;
+     /* background-image:url('https://firebasestorage.googleapis.com/v0/b/muziclubapp.appspot.com/o/alessandro-vallainc-keML1ec0KYw-unsplash%20(1).jpg?alt=media&token=a836e485-2e35-4de9-8999-1c21389725bd'); */
+     background-image: url('/src/assets/contact.jpg');
      background-attachment:fixed;
      background-repeat: no-repeat;
 
