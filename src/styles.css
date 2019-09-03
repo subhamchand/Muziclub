@@ -20,6 +20,30 @@
   background: #b71c1c;
   font-size: 15px;
 }
+
+.header {
+    line-height: 40px;
+    font-weight: bold;
+    border-bottom: 1px solid gainsboro;
+}
+.container{
+    height: 70vh;
+    width: 70vh;
+    padding: 10px;
+}
+
+.error{
+    color: red;
+    margin-bottom: 3;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}
+
+
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;

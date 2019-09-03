@@ -25,7 +25,6 @@ export class AddComponent implements OnInit {
             title: '1 HOUR', value: '60'
         }
     ];
-    isValidTime = false;
     isSelectedDate = false;
     timeArray = [];
     dailyTimingArray = [];
