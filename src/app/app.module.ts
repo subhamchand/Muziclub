@@ -24,7 +24,6 @@ import { DeleteComponent } from './delete/delete.component';
 import { OpenTimingComponent } from './open-timing/open-timing.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DeleteOneComponent } from './delete-one/delete-one.component';
-import { EditComponent } from './edit/edit.component';
 
 
 export const firebaseConfig = environment.firebaseConfig;
@@ -41,8 +40,7 @@ export const firebaseConfig = environment.firebaseConfig;
     DeleteComponent,
     OpenTimingComponent,
     ContactUsComponent,
-    DeleteOneComponent,
-    EditComponent
+    DeleteOneComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +57,6 @@ export const firebaseConfig = environment.firebaseConfig;
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [AddComponent, DeleteComponent, DeleteOneComponent, EditComponent]
+  entryComponents: [AddComponent, DeleteComponent, DeleteOneComponent]
 })
 export class AppModule { }

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { DeleteComponent } from './delete/delete.component';
 import { DeleteOneComponent } from './delete-one/delete-one.component';
-import { EditComponent } from './edit/edit.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +24,6 @@ export class DialogService {
   openDeleteOneDialog(studentId) {
     let dialogRef: MatDialogRef<DeleteOneComponent>;
     dialogRef = this.dialog.open(DeleteOneComponent, { data: { sId: studentId } });
-    return dialogRef.afterClosed();
-  }
-  openEditOneDialog(studentObj) {
-    let dialogRef: MatDialogRef<EditComponent>;
-    dialogRef = this.dialog.open(EditComponent, { data: { student: studentObj } });
     return dialogRef.afterClosed();
   }
 }

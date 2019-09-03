@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -14,6 +15,7 @@ export class BookslotService {
         return this.angularFirestore.collection('students').add(payload);
         // return this.angularFirestore.collection('teacher').snapshotChanges();
     }
+
     // method to save students booking
     getStudentBooking() {
         return this.angularFirestore.collection('students').snapshotChanges();
@@ -21,7 +23,7 @@ export class BookslotService {
     getAdminData() {
         return this.angularFirestore.collection('admin').snapshotChanges();
     }
-    // getEndTimesArray(day) {
-    //     return this.endTimesArray.filter(time => time.day === day);
-    // }
+    onUpdateBooking(){
+
+    }
 }

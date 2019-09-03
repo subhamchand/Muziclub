@@ -94,17 +94,11 @@ export class AddComponent implements OnInit {
         if (!this.formValidate()) {
             const dateFormat = new Date(this.user.starttime);
             console.log("date format", dateFormat);
-            //   const dateFormat = new Date(dateFormat1);
             console.log("dateFormat.getMinutes():", dateFormat.getMinutes());
             const newDate = moment(dateFormat).add(this.endDuration, 'minutes');
-            //   const mins = dateFormat.getMinutes() + this.endDuration;
-            //   const newDate = dateFormat.setMinutes(mins); // new date after adding 30 or 60 min
-            //   console.log("newDate::::::::",newDate)
-            //   console.log("endtime : ",new Date(newDate).toString());
             this.user.endtime = this.dateConverter(newDate);
             const tempDate = new Date(this.bookingDay);
             const momentEDate = moment(tempDate).format('dddd , MMM Do');
-            //   this.user.bookingdate = this.dateConverter(this.bookingDay);
             this.user.bookingdate = momentEDate;
             this.user.bookingDay = this.selectedDay;
             console.log(this.user);
