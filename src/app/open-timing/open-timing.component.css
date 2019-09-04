@@ -7,5 +7,5 @@
      background-image:url('/src/assets/muziclubtime.jpg');
      background-attachment:fixed;
      background-repeat: no-repeat;
-
+     overflow: scroll;
    }
