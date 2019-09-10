@@ -15,7 +15,7 @@ const regExp = /^[1-9]{1}[0-9]{9}$/;
 })
 export class AddComponent implements OnInit {
     mindate = new Date();
-    maxdate = moment(new Date()).add(10, 'days').format();
+    maxdate = moment(new Date()).add(1, 'days').format();
     startArraytimes = [];
     endArraytimes = [
         {

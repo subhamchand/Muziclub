@@ -6,11 +6,11 @@ h2{
     margin-left: 20px;
 }
 .big{
-    width:18%;
+    width:fit-content;
     font-size: 25px;
     font-style: unset;
     font-family: cursive;
-    margin-left: 50px;
+    margin-left: 20px;
     color:black;
     background-color: azure;
     opacity: 0.8;
