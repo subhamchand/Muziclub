@@ -87,3 +87,13 @@
   .padding-10 {
    padding: 15px 10%;
   }
+
+  @media ( max-width: 450px) {
+       #customers {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        margin: 0 auto;
+        width: 100%;
+        font-size: 9.3px;
+       }
+  }
