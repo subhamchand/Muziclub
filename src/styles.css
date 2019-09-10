@@ -80,3 +80,9 @@
   .pointer {
     cursor: pointer;
   }
+
+@media (max-width: 450px){
+    .width100 {
+        width: 50%;
+    }
+}

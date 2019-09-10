@@ -25,8 +25,8 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <section fxLayout="row" fxLayoutAlign="space-between center">
-      <div fxFlex="48">
+    <section fxLayout="row" fxLayoutAlign="space-between center" class="booking-width">
+      <div fxFlex="50">
         <mat-form-field class="width100 margin-top15">
           <mat-label>Start Time</mat-label>
           <mat-select (selectionChange)="onSelectStartTime($event)" [disabled]="!isSelectedDate">
@@ -36,7 +36,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div fxFlex="48">
+      <div fxFlex="50">
         <mat-form-field class="width100 margin-top15">
           <mat-label>Book For</mat-label>
           <mat-select (selectionChange)="onSelectEndTime($event)" [disabled]="!isSelectedDate">

@@ -20,3 +20,12 @@
     margin-bottom: 10px;
 }
  */
+.booking-width {
+    width: 100%
+}
+
+@media (max-width: 450px){
+  .booking-width {
+    width: 50%
+   }
+}
