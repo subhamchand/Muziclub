@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routing.modules';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarConfig } from '@angular/material';
+
 
 import { MyOwnCustomMaterialModule } from './material.modules';
 import { DetailsComponent } from './details/details.component';
@@ -57,7 +59,7 @@ export const firebaseConfig = environment.firebaseConfig;
     ToastrModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [MatSnackBarConfig],
   bootstrap: [AppComponent],
   entryComponents: [AddComponent, DeleteComponent, DeleteOneComponent, EditComponent]
 })

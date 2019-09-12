@@ -3,6 +3,7 @@ import { DateService } from './../date.service';
 import { Component, OnInit } from '@angular/core';
 import { BookslotService } from '../bookslot.service';
 import * as  moment from 'moment';
+import { SnackbarService } from '../snackbar.service';
 
 
 
@@ -49,6 +50,7 @@ export class AddComponent implements OnInit {
         private dateService: DateService,
         private dialog: MatDialogRef<AddComponent>,
         private bookslotService: BookslotService,
+        private snackbarService: SnackbarService
     ) {
     }
 
@@ -87,6 +89,10 @@ export class AddComponent implements OnInit {
         } else {
             return true;
         }
+    }
+
+    openSnackbar(message, action){
+        this.snackbarService.showSnackBar(message, action);
     }
 
     bookASlot() {

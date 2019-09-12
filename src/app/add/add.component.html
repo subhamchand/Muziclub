@@ -26,7 +26,7 @@
       </mat-form-field>
     </div>
     <section fxLayout="row" fxLayoutAlign="space-between center" class="booking-width">
-      <div fxFlex="50">
+      <div fxFlex="48">
         <mat-form-field class="width100 margin-top15">
           <mat-label>Start Time</mat-label>
           <mat-select (selectionChange)="onSelectStartTime($event)" [disabled]="!isSelectedDate">
@@ -36,7 +36,7 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div fxFlex="50">
+      <div fxFlex="48">
         <mat-form-field class="width100 margin-top15">
           <mat-label>Book For</mat-label>
           <mat-select (selectionChange)="onSelectEndTime($event)" [disabled]="!isSelectedDate">
@@ -54,7 +54,7 @@
     </div>
     <div>
       <button mat-raised-button color="primary" [disabled]="formValidate()"
-      (click)="bookASlot()">BOOK SLOT</button>
+      (click)="bookASlot()" (click)="openSnackbar('Booking Successful', '')">BOOK SLOT</button>
     </div>
   </section>
 </div>
