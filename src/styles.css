@@ -81,6 +81,12 @@
     cursor: pointer;
   }
 
+
+@media (max-width: 450px){
+    #customers {
+        font-size: 12px;
+  }
+}
 @media (max-width: 450px){
     .width100 {
         width: 50%;
