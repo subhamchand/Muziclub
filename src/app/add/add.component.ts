@@ -18,6 +18,7 @@ export class AddComponent implements OnInit {
     mindate = new Date();
     maxdate = moment(new Date()).add(1, 'days').format();
     startArraytimes = [];
+    isLoading = false;
     endArraytimes = [
         {
             title: '30 MIN', value: '30'
@@ -70,18 +71,35 @@ export class AddComponent implements OnInit {
         this.formValidate();
     }
 
+    // onDateSelect(event) {
+    //     this.isLoading = true;
+    //     this.bookingDay = event.value;
+    //     this.selectedDay = this.days[this.bookingDay.getDay()];
+    //     console.log("date and dayy ", this.bookingDay, this.selectedDay)
+    //     this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay,
+    //     this.teacherScheduledArray, this.studentList);
+    //     // const startD = moment(this.user.bookingdate).format('l');
+    //     this.formValidate();
+    //     if (this.user.bookingdate !== '') {
+    //         this.isSelectedDate = true;
+    //     }
+    // }
     onDateSelect(event) {
-        this.bookingDay = event.value;
-        this.selectedDay = this.days[this.bookingDay.getDay()];
-        console.log("date and dayy ", this.bookingDay, this.selectedDay)
-        this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay,
-        this.teacherScheduledArray, this.studentList);
-        // const startD = moment(this.user.bookingdate).format('l');
-        this.formValidate();
-        if (this.user.bookingdate !== '') {
-            this.isSelectedDate = true;
-        }
-    }
+       this.isLoading = true;
+       this.bookingDay = event.value;
+       this.selectedDay = this.days[this.bookingDay.getDay()];
+       console.log("date and dayy ", this.bookingDay, this.selectedDay)
+       setTimeout( () => {
+           this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay,
+           this.teacherScheduledArray, this.studentList);
+           this.isLoading = false;
+       }, 3000);
+       // const startD = moment(this.user.bookingdate).format('l');
+       this.formValidate();
+       if (this.user.bookingdate !== '') {
+           this.isSelectedDate = true;
+       }
+   }
 
     formValidate() {
         if (this.user.name !== '' && this.user.contact !== '') {
