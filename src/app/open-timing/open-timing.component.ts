@@ -10,11 +10,13 @@ export class OpenTimingComponent implements OnInit {
 
     constructor(private dateService: DateService) { }
     openTimeArray = [];
+    isLoading = false;
     ngOnInit() {
         this.getOpenTiming();
     }
 
     getOpenTiming() {
+        this.isLoading = true;
         this.dateService.getDailyTimings().subscribe(res => {
             this.openTimeArray = res.map(item => {
                 return {
@@ -26,6 +28,7 @@ export class OpenTimingComponent implements OnInit {
                 return a.dayId - b.dayId  ||  a.name.localeCompare(b.name);
             });
               console.log(" this.openTimeArray", this.openTimeArray);
+              this.isLoading = false;
         });
     }
     getFirstHalfTime(object) {

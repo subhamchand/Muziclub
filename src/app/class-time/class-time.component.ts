@@ -11,6 +11,7 @@ export class ClassTimeComponent implements OnInit {
 
   teachersArray = [];
   modifiedArr = [];
+  isLoading = false;
 
   constructor(private bookService: BookslotService,
     private dateService: DateService) { }
@@ -55,6 +56,7 @@ export class ClassTimeComponent implements OnInit {
   }
 
   getTeachersArrayFromFB() {
+      this.isLoading = true;
     this.dateService.getTeachersFromFirebase().subscribe(res => {
       this.teachersArray = res.map(item => {
         return {
@@ -63,6 +65,7 @@ export class ClassTimeComponent implements OnInit {
         };
       });
       this.createScheduleArray(this.teachersArray);
+      this.isLoading = false;
     });
     // console.log(this.teachersArray);
   }

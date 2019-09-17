@@ -14,6 +14,7 @@ import { DateService } from '../date.service';
 export class PracticeTimeComponent implements OnInit {
 
     studentList = [];
+    isLoading = false;
 
     constructor(private dialogservice: DialogService,
         private bookslotService: BookslotService,
@@ -32,6 +33,7 @@ export class PracticeTimeComponent implements OnInit {
     }
 
     getBookingDetials() {
+        this.isLoading = true;
         this.bookslotService.getStudentBooking().subscribe(res => {
             this.studentList = res.map(item => {
                 return {
@@ -39,6 +41,7 @@ export class PracticeTimeComponent implements OnInit {
                     ...item.payload.doc.data()
                 };
             });
+            this.isLoading = false;
         }, error => {
             console.log(error);
         });
