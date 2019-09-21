@@ -103,11 +103,7 @@ export class AddComponent implements OnInit {
 
     formValidate() {
         if (this.user.name !== '' && this.user.contact !== '') {
-            if(this.user.contact.length == 10){
-                return false;
-            }else {
-                return true;
-            }
+            return false;
         } else {
             return true;
         }
