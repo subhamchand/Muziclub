@@ -102,7 +102,8 @@ export class AddComponent implements OnInit {
    }
 
     formValidate() {
-        if (this.user.name !== '' && this.user.contact !== '') {
+        if (this.user.name !== '' && this.user.contact !== '' && regExp.test(this.user.contact)
+            && this.user.bookingdate != '' && this.user.starttime && this.endDuration) {
             return false;
         } else {
             return true;
