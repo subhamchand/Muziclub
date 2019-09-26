@@ -62,7 +62,7 @@ export class AddComponent implements OnInit {
     }
     onSelectStartTime(event) {
         this.user.starttime = moment(this.bookingDay).format('l') + ' ' + event.value;
-        console.log("on select start time", this.user.starttime);
+        // console.log("on select start time", this.user.starttime);
         this.formValidate();
     }
 
@@ -75,7 +75,7 @@ export class AddComponent implements OnInit {
     //     this.isLoading = true;
     //     this.bookingDay = event.value;
     //     this.selectedDay = this.days[this.bookingDay.getDay()];
-    //     console.log("date and dayy ", this.bookingDay, this.selectedDay)
+    //     // console.log("date and dayy ", this.bookingDay, this.selectedDay)
     //     this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay,
     //     this.teacherScheduledArray, this.studentList);
     //     // const startD = moment(this.user.bookingdate).format('l');
@@ -88,7 +88,7 @@ export class AddComponent implements OnInit {
        this.isLoading = true;
        this.bookingDay = event.value;
        this.selectedDay = this.days[this.bookingDay.getDay()];
-       console.log("date and dayy ", this.bookingDay, this.selectedDay)
+       // console.log("date and dayy ", this.bookingDay, this.selectedDay)
        setTimeout( () => {
            this.timeArray = this.dateService.dateArray(this.dailyTimingArray, this.selectedDay,
            this.teacherScheduledArray, this.studentList);
@@ -117,20 +117,20 @@ export class AddComponent implements OnInit {
     bookASlot() {
         if (!this.formValidate()) {
             const dateFormat = new Date(this.user.starttime);
-            console.log("date format", dateFormat);
-            console.log("dateFormat.getMinutes():", dateFormat.getMinutes());
+            // console.log("date format", dateFormat);
+            // console.log("dateFormat.getMinutes():", dateFormat.getMinutes());
             const newDate = moment(dateFormat).add(this.endDuration, 'minutes');
             this.user.endtime = this.dateConverter(newDate);
             const tempDate = new Date(this.bookingDay);
             const momentEDate = moment(tempDate).format('dddd , MMM Do');
             this.user.bookingdate = momentEDate;
             this.user.bookingDay = this.selectedDay;
-            console.log(this.user);
+            // console.log(this.user);
             this.bookSlotService.onSaveStudentBooking(this.user).then(res => {
-                console.log(res);
+                // console.log(res);
                 this.dialog.close(res);
             }).catch(err => {
-                console.log(err);
+                // console.log(err);
             });
         }
     }
@@ -138,7 +138,7 @@ export class AddComponent implements OnInit {
     dateConverter(date) {
         const endDate = new Date(date);
         const momentEDate = moment(this.bookingDay).format('l') + ' ' + moment(endDate).format('LT');
-        console.log("momentEDate:", momentEDate)
+        // console.log("momentEDate:", momentEDate)
         return momentEDate;
     }
 
@@ -162,7 +162,7 @@ export class AddComponent implements OnInit {
                     ...item.payload.doc.data()
                 };
             });
-            console.log("add component", this.teacherScheduledArray);
+            // console.log("add component", this.teacherScheduledArray);
         });
     }
 
@@ -175,7 +175,7 @@ export class AddComponent implements OnInit {
                 };
             });
         }, error => {
-            console.log(error);
+            // console.log(error);
         });
     }
 }

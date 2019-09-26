@@ -27,7 +27,7 @@ export class OpenTimingComponent implements OnInit {
             this.openTimeArray = this.openTimeArray.sort(function(a, b) {
                 return a.dayId - b.dayId  ||  a.name.localeCompare(b.name);
             });
-              console.log(" this.openTimeArray", this.openTimeArray);
+              // console.log(" this.openTimeArray", this.openTimeArray);
               this.isLoading = false;
         });
     }

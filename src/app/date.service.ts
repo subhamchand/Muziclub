@@ -13,7 +13,7 @@ export class DateService {
         const e = new Date();
         const x = d.setHours(startTime.hr, startTime.min, 0, 0); // reassign it to today's midnight
         const y = e.setHours(endTime.hr, endTime.min, 0, 0);
-        // console.log("x and y", new Date(x).toString(),new Date(y).toString());
+        // // console.log("x and y", new Date(x).toString(),new Date(y).toString());
         const timeArr = [];
         while (d.getHours() <= e.getHours()) {
             let hours: any = d.getHours();
@@ -57,10 +57,10 @@ export class DateService {
                         {"hr":new Date(oneStudent.starttime).getHours(),"min":new Date(oneStudent.starttime).getMinutes()},
                         {"hr":new Date(oneStudent.endtime).getHours(),"min":new Date(oneStudent.endtime).getMinutes()}
                         ));
-                    console.log("tempBookingTiming:", tempBookingTiming)
+                    // console.log("tempBookingTiming:", tempBookingTiming)
                     tempBookingTiming.forEach(element =>{
                         element.forEach(el => {
-                            // console.log("ele",el)
+                            // // console.log("ele",el)
                             bookingSchedule.push(el);
                             bookingSchedule = _.sortedUniq(bookingSchedule)
                         })
@@ -70,17 +70,17 @@ export class DateService {
 
         teachersScheduledArray.forEach(oneTeacher => {
             oneTeacher.classes.forEach(classes => {
-                // console.log("classes", classes)
+                // // console.log("classes", classes)
                 if(classes.day.toLowerCase() === selectedDay.toLowerCase()){
-                    console.log("classes.startTime, classes.endTime:",classes.startTime, classes.endTime);
+                    // console.log("classes.startTime, classes.endTime:",classes.startTime, classes.endTime);
                     tempTiming.push(this.calculateTimeArray(classes.startTime, classes.endTime));
-                    console.log("tempTiming:", tempTiming)
+                    // console.log("tempTiming:", tempTiming)
                     tempTiming.forEach(element =>{
                         element.forEach(el => {
-                            // console.log("ele",el)
+                            // // console.log("ele",el)
                             teacherSchedule.push(el);
                             teacherSchedule = _.sortedUniq(teacherSchedule)
-                            // console.log("teacherSchedule:::::::::", teacherSchedule);
+                            // // console.log("teacherSchedule:::::::::", teacherSchedule);
                         })
                     })
                 } //end of if
@@ -99,7 +99,7 @@ export class DateService {
 
         const tempArr = _.difference(scheduleArray, teacherSchedule);
         const finalArr = _.difference(tempArr,bookingSchedule);
-        // console.log("finalArr:", finalArr);
+        // // console.log("finalArr:", finalArr);
 
         return finalArr;
     }

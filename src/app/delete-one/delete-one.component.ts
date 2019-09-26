@@ -32,7 +32,7 @@ export class DeleteOneComponent implements OnInit {
                 };
             });
         }, error => {
-            console.log("error in getting data: ", error);
+            // console.log("error in getting data: ", error);
         });
     }
 
@@ -40,9 +40,9 @@ export class DeleteOneComponent implements OnInit {
         if (this.password === this.adminData[0].password) {
             this.firestore.doc('students/' + sId).delete();
             this.dialog.close();
-            console.log('deleted bhai')
+            // console.log('deleted bhai')
         }else{
-            console.log('wrong password bhai')
+            //console.log('wrong password bhai')
         }
     }
 }

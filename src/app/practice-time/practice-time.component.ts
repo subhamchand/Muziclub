@@ -28,7 +28,7 @@ export class PracticeTimeComponent implements OnInit {
 
     bookslot() {
         this.dialogservice.openAddDialog().subscribe(res => {
-            console.log(res);
+            // console.log(res);
         });
     }
 
@@ -43,7 +43,7 @@ export class PracticeTimeComponent implements OnInit {
             });
             this.isLoading = false;
         }, error => {
-            console.log(error);
+            // console.log(error);
         });
     }
 

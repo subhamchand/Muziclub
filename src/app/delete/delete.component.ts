@@ -30,7 +30,7 @@ export class DeleteComponent implements OnInit {
                 };
             });
         }, error => {
-            console.log("error in getting data: ", error);
+            // console.log("error in getting data: ", error);
         });
     }
     getBookingDetails() {
@@ -42,7 +42,7 @@ export class DeleteComponent implements OnInit {
                 };
             });
         }, error => {
-            console.log("error in getting data: ", error);
+            // console.log("error in getting data: ", error);
         });
     }
     onDelete() {
@@ -55,9 +55,9 @@ export class DeleteComponent implements OnInit {
                 }
             }
             this.dialog.close();
-            console.log('deleted bhai')
+            // console.log('deleted bhai')
         }else{
-            console.log('wrong password bhai')
+            // console.log('wrong password bhai')
         }
     }
 
